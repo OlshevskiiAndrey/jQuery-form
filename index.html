@@ -137,7 +137,7 @@
             }
 
             var eml = $('input[type=email]')
-            var reg = /^[a-z0-9_-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;;
+           var reg = /^[a-z0-9_-]+\.[a-z0-9_-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;
             $(".errEml").remove();
             if ($(eml).val() == "") {
                 $(eml).after("<div class='errEml' style='color:red; margin-left: 190px; margin-top:20px;'>Please enter email</div>");
