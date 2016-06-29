@@ -15,7 +15,6 @@
     <style>
         .form-basic input.invalid {
             border: 4px solid red;
-    
         }
     </style>
 </head>
@@ -39,9 +38,9 @@
 
 <div class="main-content">
 
-    <!-- You only need this form and the form-basic.css -->
+    You only need this form and the form-basic.css
 
-    <form id = "main_form" class="form-basic" method="post" action="">
+    <form id="main_form" class="form-basic" method="post" action="#">
 
         <div class="form-title-row">
             <h1>Form Example</h1>
@@ -64,7 +63,7 @@
         <div class="form-row">
             <label>
                 <span>Dropdown</span>
-                <select name="dropdown">
+                <select name="dropdown" id="dropdown">
                     <option></option>
                     <option>Option One</option>
                     <option>Option Two</option>
@@ -95,21 +94,21 @@
                 <div>
                     <label>
                         <input type="radio" name="radio">
-                        <span>Radio option 1</span>
+                        <span class="rad">Radio option 1</span>
                     </label>
                 </div>
 
                 <div>
                     <label>
                         <input type="radio" name="radio">
-                        <span>Radio option 2</span>
+                        <span class="rad">Radio option 2</span>
                     </label>
                 </div>
 
                 <div>
                     <label>
                         <input type="radio" name="radio">
-                        <span>Radio option 3</span>
+                        <span class="rad">Radio option 3</span>
                     </label>
                 </div>
 
@@ -125,29 +124,61 @@
 </div>
 <script src="jquery-3.0.0.min.js"></script>
 <script>
-    $(function() {
-        var onSubmit = function(event) {
+    $(function () {
+        var onSubmit = function (event) {
             console.log(event);
             event.preventDefault();
-//            alert('YAHOOO');
-            
-            var x = $('input[type=text]').val(),
-            errorMsgTag = "<div class='error' style='color:red; margin-left: 200px;'>Please enter name</div>";
-            $(".error").remove();
-            $('.invalid').removeClass('invalid');
-            if(x == '') {
-                $('input[type=text]').addClass('invalid').after(errorMsgTag);
+
+            var name = $('input[type=text]').val(),
+                errorMsgTag = "<div class='errName' style='color:red; margin-left: 190px; margin-top: 20px;'>Please enter name</div>";
+            $(".errName").remove();
+            if (name == '') {
+                $('input[type=text]').after(errorMsgTag);
             }
-            
+
+            var eml = $('input[type=email]')
+            var reg = /^[a-z0-9_-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;;
+            $(".errEml").remove();
+            if ($(eml).val() == "") {
+                $(eml).after("<div class='errEml' style='color:red; margin-left: 190px; margin-top:20px;'>Please enter email</div>");
+            } else if ($(eml).val().search(reg) !== 0) {
+                $(eml).after("<div class='errEml' style='color:red; margin-left: 190px; margin-top:20px;'>Your email is invalid</div>");
+            }
+
+
+            var drop = $('#dropdown option:selected').val();
+            $(".errDd").remove();
+            if (drop == "") {
+                $('#dropdown').after("<div class='errDd' style='color:red; margin-left: 190px; margin-top:20px;'>Please select an option</div>");
+            }
+
+            var txt = $('textarea').val();
+            $(".errMsg").remove();
+            if (txt == "") {
+                $('textarea').after("<div class='errMsg' style='color:red; margin-left: 190px; margin-top:20px;'>Please enter the text</div>");
+            }
+
+
+            var check = $('input[type=checkbox]');
+            $('errCheck').remove();
+            if ($(check).prop('checked') == false) {
+                $(check).after("<div class='errCheck' style='color:red; margin-left: 190px; margin-top:20px;'>Please select checkbox</div>");
+            }
+
+
+            var rad = $('input[type=radio]');
+            $('errRad').remove();
+            if ($(rad).prop('checked') == false) {
+                $('.rad').after("<div class='errRad' style='color:red; margin-left: 10px;  margin-top:20px;'>Please select radio</div>");
+            }
+
+
         }
-       $("button[type=submit]").click(onSubmit);
-        
-        
-        
-        
-      });
-    
-    </script>
+        $("button[type=submit]").click(onSubmit);
+
+
+    });
+</script>
 
 </body>
 
