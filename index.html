@@ -129,7 +129,7 @@
             console.log(event);
             event.preventDefault();
 
-           function name() {
+            function name() {
                 var name = $('input[type=text]').val(),
                     errorMsgTag = "<div class='errName' style='color:red; margin-left: 190px; margin-top: 20px;'>Please enter name</div>";
                 $(".errName").remove();
@@ -169,21 +169,20 @@
 
             function checkbox() {
                 var check = $('input[type=checkbox]');
-                $('errCheck').remove();
+                $('.errCheck').remove();
                 if ($(check).prop('checked') == false) {
                     $(check).after("<div class='errCheck' style='color:red; margin-left: 190px; margin-top:20px;'>Please select checkbox</div>");
-                }
-                
+                } 
+
             }
 
             function radBtn() {
-                var rad = $('input[type=radio]');
-                $('errRad').remove();
-                if ($(rad).prop('checked') == false) {
+                var rad = $('input[type=radio]:checked').val();
+                $('.errRad').remove();
+                if (rad == null)
                     $('.rad').after("<div class='errRad' style='color:red; margin-left: 10px;  margin-top:20px;'>Please select radio</div>");
-                }
-            }
 
+            }
             name();
             email();
             dropD();
