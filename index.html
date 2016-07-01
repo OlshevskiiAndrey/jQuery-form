@@ -129,7 +129,7 @@
             console.log(event);
             event.preventDefault();
 
-            function name() {
+            function validateName() {
                 var name = $('input[type=text]').val(),
                     errorMsgTag = "<div class='errName' style='color:red; margin-left: 190px; margin-top: 20px;'>Please enter name</div>";
                 $(".errName").remove();
@@ -138,9 +138,9 @@
                 }
             }
 
-            function email() {
+            function validateEmail() {
                 var eml = $('input[type=email]')
-                 var reg = /^[a-z0-9_-]+[a-z0-9_-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;
+                var reg = /^[a-z0-9_-]+[a-z0-9_-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;
                 $(".errEml").remove();
                 if ($(eml).val() == "") {
                     $(eml).after("<div class='errEml' style='color:red; margin-left: 190px; margin-top:20px;'>Please enter email</div>");
@@ -149,7 +149,7 @@
                 }
             }
 
-            function dropD() {
+            function validateDropdown() {
                 var drop = $('#dropdown option:selected').val();
                 $(".errDd").remove();
                 if (drop == "") {
@@ -158,7 +158,7 @@
             }
 
 
-            function textAr() {
+            function validateTextarea() {
                 var txt = $('textarea').val();
                 $(".errMsg").remove();
                 if (txt == "") {
@@ -167,28 +167,28 @@
             }
 
 
-            function checkbox() {
+            function validateCheckbox() {
                 var check = $('input[type=checkbox]');
                 $('.errCheck').remove();
                 if ($(check).prop('checked') == false) {
                     $(check).after("<div class='errCheck' style='color:red; margin-left: 190px; margin-top:20px;'>Please select checkbox</div>");
-                } 
+                }
 
             }
 
-            function radBtn() {
+            function validateRadioButton() {
                 var rad = $('input[type=radio]:checked').val();
                 $('.errRad').remove();
                 if (rad == null)
                     $('.rad').after("<div class='errRad' style='color:red; margin-left: 10px;  margin-top:20px;'>Please select radio</div>");
 
             }
-            name();
-            email();
-            dropD();
-            textAr();
-            checkbox();
-            radBtn();
+            validateName();
+            validateEmail();
+            validateDropdown();
+            validateTextarea();
+            validateCheckbox();
+            validateRadioButton();
         }
         $("button[type=submit]").click(onSubmit);
 
